@@ -1,0 +1,17 @@
+{
+  "name": "site-digest",
+  "version": "1.0.0",
+  "description": "Extracts text content from a web page and generates an AI summary.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node server.js"
+  },
+  "dependencies": {
+    "@google/generative-ai": "^0.21.0",
+    "axios": "^1.6.8",
+    "cheerio": "^1.0.0-rc.12",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2"
+  }
+}
