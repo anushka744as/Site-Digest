@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Site Digest: AI-powered website analysis and structured summaries.">
+  <title>Site Digest — AI Web Summarizer</title>
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <div class="glass-bg-glow"></div>
+  
+  <div class="app-container">
+    <header class="app-header">
+      <div class="logo">
+        <span class="logo-icon">✦</span>
+        <h1>Site Digest</h1>
+      </div>
+      <p class="subtitle">Turn any URL into structured, AI-powered insights instantly.</p>
+    </header>
+
+    <!-- Key & Environment Status Banner -->
+    <div id="status-banner" class="status-banner info-mode hidden">
+      <span class="status-icon">💡</span>
+      <div class="status-text">
+        <strong>Demo Mode active:</strong> Add <code>GEMINI_API_KEY</code> to your <code>.env</code> file to unlock advanced AI synthesis. Currently extracting semantic structure locally.
+      </div>
+    </div>
+
+    <main class="app-main">
+      <!-- Input Card -->
+      <section class="card input-card">
+        <form id="digest-form">
+          <div class="input-group">
+            <input 
+              type="url" 
+              id="url-input" 
+              placeholder="https://example.com/blog-post" 
+              required 
+              autocomplete="off"
+            >
+            <button type="submit" id="submit-btn">
+              <span>Digest URL</span>
+              <span class="btn-arrow">→</span>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <!-- Loading / Pipeline Progress Card -->
+      <section id="loading-card" class="card loading-card hidden">
+        <div class="spinner-container">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
+        <h3>Analyzing Website...</h3>
+        <p class="loading-subtitle">Our pipeline is extracting and cleaning page structure.</p>
+        
+        <ul class="pipeline-list">
+          <li id="step-connect" class="step pending">
+            <span class="step-bullet"></span>
+            <span class="step-label">Establishing server connection</span>
+          </li>
+          <li id="step-scrape" class="step pending">
+            <span class="step-bullet"></span>
+            <span class="step-label">Fetching page contents (HTML)</span>
+          </li>
+          <li id="step-parse" class="step pending">
+            <span class="step-bullet"></span>
+            <span class="step-label">Cleaning text boilerplate & cleaning structure</span>
+          </li>
+          <li id="step-llm" class="step pending">
+            <span class="step-bullet"></span>
+            <span class="step-label">Synthesizing digest with Google Gemini AI</span>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Error Card -->
+      <section id="error-card" class="card error-card hidden">
+        <div class="error-header">
+          <span class="error-badge-icon">⚠️</span>
+          <h3>Pipeline Failure</h3>
+        </div>
+        <p id="error-message">Something went wrong while scraping the webpage.</p>
+        <button id="retry-btn" class="secondary-btn">Try Another Link</button>
+      </section>
+
+      <!-- Output / Summary Dashboard -->
+      <section id="output-dashboard" class="dashboard-grid hidden">
+        <!-- Main Summary Section -->
+        <div class="card summary-card span-full">
+          <div class="summary-header">
+            <div class="summary-title-wrapper">
+              <span id="output-mode-badge" class="mode-badge">AI Mode</span>
+              <h2 id="output-title">Website Title</h2>
+              <p id="output-description" class="hook-desc">Short description hook</p>
+            </div>
+            <a id="output-link" href="#" target="_blank" rel="noopener noreferrer" class="visit-link-btn">
+              <span>Visit Site</span>
+              <span class="external-icon">↗</span>
+            </a>
+          </div>
+
+          <!-- Tags list -->
+          <div id="output-topics" class="topics-container">
+            <!-- Badges will be generated here -->
+          </div>
+        </div>
+
+        <!-- Detail Breakdown Grid -->
+        <div class="card detail-card">
+          <div class="card-header">
+            <span class="card-icon">📄</span>
+            <h3>Executive Summary</h3>
+          </div>
+          <p id="output-summary" class="detail-body">Detailed summary paragraph goes here...</p>
+        </div>
+
+        <div class="card detail-card">
+          <div class="card-header">
+            <span class="card-icon">🎯</span>
+            <h3>Primary Target Audience</h3>
+          </div>
+          <p id="output-audience" class="detail-body">Target audience details...</p>
+        </div>
+
+        <div class="card detail-card span-full">
+          <div class="card-header">
+            <span class="card-icon">💡</span>
+            <h3>Key Takeaways & Details</h3>
+          </div>
+          <ul id="output-takeaways" class="takeaways-list">
+            <!-- Bullet points generated dynamically -->
+          </ul>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <p>Site Digest &copy; 2026. Powered by Google Gemini and Express.</p>
+    </footer>
+  </div>
+  <script src="index.js"></script>
+</body>
+</html>
